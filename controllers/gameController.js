@@ -4,25 +4,36 @@ const renderHome = (req, res) => res.render("home");
 
 const renderAllGames = async (req, res) => {
   const games = await db.getAllGames();
-  console.log(games);
+
+  res.render("game", {
+    games: games,
+  });
 };
 
-const renderAllGenres = (req, res) => {
-  console.log("All genres will be here");
+const renderAllGenres = async (req, res) => {
+  const genres = await db.getAllGenres();
+  res.render("genre", {
+    genres: genres,
+  });
 };
 
-const renderGenre = (req, res) => {
+const renderGenre = async (req, res) => {
   const genre = req.params.genre;
-  console.log(`This genre will be here ${genre}`);
+  const game = await db.getGamesByGenre(genre);
+  console.log(game);
 };
 
-const renderAllDevs = (req, res) => {
-  console.log("All devs will be here");
+const renderAllDevs = async (req, res) => {
+  const devs = await db.getAllDevelopers();
+  res.render("dev", {
+    devs: devs,
+  });
 };
 
-const renderDev = (req, res) => {
+const renderDev = async (req, res) => {
   const dev = req.params.dev;
-  console.log(`This dev will be here ${dev}`);
+  const games = await db.getGamesByDev(dev);
+  console.log(games);
 };
 
 module.exports = {

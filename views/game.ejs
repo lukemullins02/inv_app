@@ -1,0 +1,12 @@
+<body>
+    <div>
+        <% for (let i = 0; i < games.length; i++){ %>
+            <div>
+              <p><%= games[i].title%></p>
+              <p><%= games[i].description%></p>
+              <p><%= games[i].price%></p>
+              <p><%= games[i].rating%></p>
+            </div>
+        <% } %>
+    </div>
+</body>
