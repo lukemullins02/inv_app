@@ -1,0 +1,42 @@
+// const db = require("../db/queries");
+
+/* renderHome,
+  renderAllGames,
+  renderAllGenres,
+  renderGenre,
+  renderAllDevs,
+  renderDev
+ */
+
+const renderHome = (req, res) => res.render("home");
+
+const renderAllGames = (req, res) => {
+  console.log("All games will be here");
+};
+
+const renderAllGenres = (req, res) => {
+  console.log("All genres will be here");
+};
+
+const renderGenre = (req, res) => {
+  const genre = req.params.genre;
+  console.log(`This genre will be here ${genre}`);
+};
+
+const renderAllDevs = (req, res) => {
+  console.log("All devs will be here");
+};
+
+const renderDev = (req, res) => {
+  const dev = req.params.dev;
+  console.log(`This dev will be here ${dev}`);
+};
+
+module.exports = {
+  renderHome,
+  renderAllGames,
+  renderAllGenres,
+  renderGenre,
+  renderAllDevs,
+  renderDev,
+};
