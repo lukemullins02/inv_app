@@ -1,17 +1,10 @@
-// const db = require("../db/queries");
-
-/* renderHome,
-  renderAllGames,
-  renderAllGenres,
-  renderGenre,
-  renderAllDevs,
-  renderDev
- */
+const db = require("../db/queries");
 
 const renderHome = (req, res) => res.render("home");
 
-const renderAllGames = (req, res) => {
-  console.log("All games will be here");
+const renderAllGames = async (req, res) => {
+  const games = await db.getAllGames();
+  console.log(games);
 };
 
 const renderAllGenres = (req, res) => {

@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const path = require("node:path");
-const msgRouter = require("./routes/gameRouter");
 const gameRouter = require("./routes/gameRouter");
 const assetsPath = path.join(__dirname, "public");
 
