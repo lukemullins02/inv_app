@@ -2,7 +2,14 @@ const pool = require("./pool");
 
 async function getAllGames() {
   const { rows } = await pool.query("SELECT * FROM game");
+
   return rows;
+}
+
+async function getGame(id) {
+  const { rows } = await pool.query(`SELECT * FROM game WHERE id = ${id}`);
+
+  return rows[0];
 }
 
 async function getAllGenres() {
@@ -34,6 +41,7 @@ async function getGamesByDev(dev) {
 
 module.exports = {
   getAllGames,
+  getGame,
   getAllGenres,
   getGamesByGenre,
   getAllDevelopers,

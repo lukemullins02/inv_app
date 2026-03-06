@@ -2,7 +2,8 @@
     <div>
         <% for (let i = 0; i < genres.length; i++){ %>
             <div>
-              <p><%= genres[i].genre%></p>
+              <a href="/genre/<%= genres[i].genre %>"><%= genres[i].genre%></a>
+            </div>
             </div>
         <% } %>
     </div>

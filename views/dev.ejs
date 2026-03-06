@@ -2,7 +2,7 @@
     <div>
         <% for (let i = 0; i < devs.length; i++){ %>
             <div>
-              <p><%= devs[i].developer%></p>
+              <a href="/dev/<%= devs[i].developer %>"><%= devs[i].developer%></a>
             </div>
         <% } %>
     </div>

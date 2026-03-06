@@ -10,6 +10,15 @@ const renderAllGames = async (req, res) => {
   });
 };
 
+const renderGame = async (req, res) => {
+  const id = req.params.id;
+  const game = await db.getGame(id);
+
+  res.render("gameExpand", {
+    game: game,
+  });
+};
+
 const renderAllGenres = async (req, res) => {
   const genres = await db.getAllGenres();
   res.render("genre", {
@@ -19,8 +28,10 @@ const renderAllGenres = async (req, res) => {
 
 const renderGenre = async (req, res) => {
   const genre = req.params.genre;
-  const game = await db.getGamesByGenre(genre);
-  console.log(game);
+  const games = await db.getGamesByGenre(genre);
+  res.render("genreExpand", {
+    games: games,
+  });
 };
 
 const renderAllDevs = async (req, res) => {
@@ -33,7 +44,9 @@ const renderAllDevs = async (req, res) => {
 const renderDev = async (req, res) => {
   const dev = req.params.dev;
   const games = await db.getGamesByDev(dev);
-  console.log(games);
+  res.render("devExpand", {
+    games: games,
+  });
 };
 
 module.exports = {
@@ -43,4 +56,5 @@ module.exports = {
   renderGenre,
   renderAllDevs,
   renderDev,
+  renderGame,
 };

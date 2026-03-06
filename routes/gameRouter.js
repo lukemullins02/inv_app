@@ -7,6 +7,7 @@ const {
   renderGenre,
   renderAllDevs,
   renderDev,
+  renderGame,
 } = require("../controllers/gameController");
 
 const gameRouter = Router();
@@ -14,6 +15,8 @@ const gameRouter = Router();
 gameRouter.get("/", renderHome);
 
 gameRouter.get("/game", renderAllGames);
+
+gameRouter.get("/game/:id", renderGame);
 
 gameRouter.get("/genre", renderAllGenres);
 
