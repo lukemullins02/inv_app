@@ -35,6 +35,13 @@ async function insertGameDevs(id, dev) {
   );
 }
 
+async function updateGame(id, title, description, price, rating) {
+  await pool.query(
+    `UPDATE GAME SET title=$1, description=$2, price = $3, rating=$4 where id = $5`,
+    [title, description, price, rating, id],
+  );
+}
+
 async function getAllGenres() {
   const { rows } = await pool.query("SELECT distinct genre FROM genre");
 
@@ -77,6 +84,7 @@ module.exports = {
   getAllGenres,
   insertGameGenres,
   insertGameDevs,
+  updateGame,
   getGamesByGenre,
   insertGenre,
   getAllDevelopers,

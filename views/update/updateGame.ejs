@@ -1,0 +1,38 @@
+<body>
+  <main>
+    <form method="POST" action="/game/<%= game.id %>/update">
+      <div>
+        <label for="title">Title </label>
+        <input type="text" name="title" id="title" value="<%= game.title %>" />
+      </div>
+      <div>
+        <label for="description">Description </label>
+        <textarea type="text" name="description" id="description">
+<%= game.description %></textarea
+        >
+      </div>
+      <div>
+        <label for="price">Price </label>
+        <input
+          type="number"
+          name="price"
+          id="price"
+          value="<%= game.price %>"
+        />
+      </div>
+      <div>
+        <label for="rating">Rating </label>
+        <input
+          type="number"
+          max="10"
+          min="1"
+          name="rating"
+          id="rating"
+          value="<%= game.rating %>"
+        />
+      </div>
+
+      <input type="submit" value="Submit" />
+    </form>
+  </main>
+</body>

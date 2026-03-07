@@ -4,10 +4,10 @@ const {
   renderHome,
   renderAllGames,
   createGame,
-  renderAllGenres,
-  renderGenre,
   renderGame,
   renderGameForm,
+  updateGameGet,
+  updateGamePost,
 } = require("../controllers/gameController");
 
 const gameRouter = Router();
@@ -21,5 +21,9 @@ gameRouter.get("/game/form", renderGameForm);
 gameRouter.post("/game/form", createGame);
 
 gameRouter.get("/game/:id", renderGame);
+
+gameRouter.get("/game/:id/update", updateGameGet);
+
+gameRouter.post("/game/:id/update", updateGamePost);
 
 module.exports = gameRouter;
