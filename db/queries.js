@@ -28,6 +28,13 @@ async function insertGameGenres(id, genre) {
   ]);
 }
 
+async function insertGameDevs(id, dev) {
+  await pool.query(
+    "INSERT INTO DEVELOPER (game_id, developer) VALUES ($1,$2)",
+    [id, dev],
+  );
+}
+
 async function getAllGenres() {
   const { rows } = await pool.query("SELECT distinct genre FROM genre");
 
@@ -40,6 +47,10 @@ async function getGamesByGenre(genre) {
   );
 
   return rows;
+}
+
+async function insertGenre(genre) {
+  await pool.query(`INSERT INTO GENRE (genre) values ('${genre}')`);
 }
 
 async function getAllDevelopers() {
@@ -61,7 +72,9 @@ module.exports = {
   insertGame,
   getAllGenres,
   insertGameGenres,
+  insertGameDevs,
   getGamesByGenre,
+  insertGenre,
   getAllDevelopers,
   getGamesByDev,
 };

@@ -25,6 +25,14 @@
           <% } %>
         </select>
       </div>
+      <div>
+        <label for="devs">Select Developers (Use cmd/ctrl to select multiple) </label>
+        <select name="devs" id="devs" multiple>
+          <% for (let i = 0; i < devs.length; i++) { %>
+            <option value="<%= devs[i].developer %>"><%= devs[i].developer %></option>
+          <% } %>
+        </select>
+      </div>
 
       <input type="submit" value="Submit" />
     </form>

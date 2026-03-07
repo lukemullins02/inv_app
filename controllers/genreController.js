@@ -15,7 +15,21 @@ const renderGenre = async (req, res) => {
   });
 };
 
+const renderGenreForm = async (req, res) => {
+  res.render("form/genreForm");
+};
+
+const createGenre = async (req, res) => {
+  const { genre } = req.body;
+
+  await db.insertGenre(genre);
+
+  res.redirect("/genre");
+};
+
 module.exports = {
   renderAllGenres,
   renderGenre,
+  renderGenreForm,
+  createGenre,
 };
