@@ -66,6 +66,10 @@ async function getGamesByDev(dev) {
   return rows;
 }
 
+async function insertDev(dev) {
+  await pool.query(`INSERT INTO DEVELOPER (developer) values ('${dev}')`);
+}
+
 module.exports = {
   getAllGames,
   getGame,
@@ -77,4 +81,5 @@ module.exports = {
   insertGenre,
   getAllDevelopers,
   getGamesByDev,
+  insertDev,
 };

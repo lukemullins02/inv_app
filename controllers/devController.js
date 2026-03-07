@@ -15,7 +15,21 @@ const renderDev = async (req, res) => {
   });
 };
 
+const renderDevForm = async (req, res) => {
+  res.render("form/devForm");
+};
+
+const createDev = async (req, res) => {
+  const { dev } = req.body;
+
+  await db.insertDev(dev);
+
+  res.redirect("/dev");
+};
+
 module.exports = {
   renderAllDevs,
   renderDev,
+  renderDevForm,
+  createDev,
 };
