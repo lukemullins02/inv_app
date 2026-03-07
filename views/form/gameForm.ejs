@@ -17,6 +17,15 @@
         <label for="rating">Rating </label>
         <input type="number" max="10" min="1" name="rating" id="rating" />
       </div>
+      <div>
+        <label for="genres">Select Genres (Use cmd/ctrl to select multiple) </label>
+        <select name="genres" id="genres" multiple>
+          <% for (let i = 0; i < genres.length; i++) { %>
+            <option value="<%= genres[i].genre %>"><%= genres[i].genre %></option>
+          <% } %>
+        </select>
+      </div>
+
       <input type="submit" value="Submit" />
     </form>
   </main>

@@ -20,13 +20,23 @@ const renderGame = async (req, res) => {
 };
 
 const renderGameForm = async (req, res) => {
-  res.render("form/gameForm");
+  const genres = await db.getAllGenres();
+
+  console.log(genres);
+
+  res.render("form/gameForm", {
+    genres: genres,
+  });
 };
 
 const createGame = async (req, res) => {
-  const { title, description, price, rating } = req.body;
+  const { title, description, price, rating, genres } = req.body;
 
-  await db.insertGame(title, description, price, rating);
+  const id = await db.insertGame(title, description, price, rating);
+
+  for (let i = 0; i < genres.length; i++) {
+    await db.insertGameGenres(id, genres[i]);
+  }
 
   res.redirect("/game");
 };
