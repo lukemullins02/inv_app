@@ -12,6 +12,13 @@ async function getGame(id) {
   return rows[0];
 }
 
+async function insertGame(title, description, price, rating) {
+  await pool.query(
+    "INSERT INTO GAME (title, description, price, rating) VALUES ($1,$2,$3,$4)",
+    [title, description, price, rating],
+  );
+}
+
 async function getAllGenres() {
   const { rows } = await pool.query("SELECT distinct genre FROM genre");
 
@@ -42,6 +49,7 @@ async function getGamesByDev(dev) {
 module.exports = {
   getAllGames,
   getGame,
+  insertGame,
   getAllGenres,
   getGamesByGenre,
   getAllDevelopers,
