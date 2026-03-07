@@ -7,7 +7,7 @@ async function getAllGames() {
 }
 
 async function getGame(id) {
-  const { rows } = await pool.query(`SELECT * FROM game WHERE id = ${id}`);
+  const { rows } = await pool.query(`SELECT * FROM game WHERE id = $1`, [id]);
 
   return rows[0];
 }
@@ -50,14 +50,15 @@ async function getAllGenres() {
 
 async function getGamesByGenre(genre) {
   const { rows } = await pool.query(
-    `SELECT gm.title, gm.description, gm.price, gm.rating from game as gm join genre as gn on gm.id = gn.game_id where genre='${genre}'`,
+    `SELECT gm.title, gm.description, gm.price, gm.rating from game as gm join genre as gn on gm.id = gn.game_id where genre=$1`,
+    [genre],
   );
 
   return rows;
 }
 
 async function insertGenre(genre) {
-  await pool.query(`INSERT INTO GENRE (genre) values ('${genre}')`);
+  await pool.query(`INSERT INTO GENRE (genre) values ($1)`, [genre]);
 }
 
 async function getAllDevelopers() {
@@ -67,14 +68,15 @@ async function getAllDevelopers() {
 
 async function getGamesByDev(dev) {
   const { rows } = await pool.query(
-    `SELECT gm.title, gm.description, gm.price, gm.rating from game as gm join developer as d on gm.id = d.game_id where developer='${dev}'`,
+    `SELECT gm.title, gm.description, gm.price, gm.rating from game as gm join developer as d on gm.id = d.game_id where developer=$1`,
+    [dev],
   );
 
   return rows;
 }
 
 async function insertDev(dev) {
-  await pool.query(`INSERT INTO DEVELOPER (developer) values ('${dev}')`);
+  await pool.query(`INSERT INTO DEVELOPER (developer) values ($1)`, [dev]);
 }
 
 module.exports = {
