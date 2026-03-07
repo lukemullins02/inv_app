@@ -14,18 +14,16 @@ const renderGame = async (req, res) => {
   const id = req.params.id;
   const game = await db.getGame(id);
 
-  res.render("gameExpand", {
+  res.render("expand/gameExpand", {
     game: game,
   });
 };
 
 const renderGameForm = async (req, res) => {
-  res.render("gameForm");
+  res.render("form/gameForm");
 };
 
 const createGame = async (req, res) => {
-  console.log(req.body);
-
   const { title, description, price, rating } = req.body;
 
   await db.insertGame(title, description, price, rating);
@@ -33,44 +31,10 @@ const createGame = async (req, res) => {
   res.redirect("/game");
 };
 
-const renderAllGenres = async (req, res) => {
-  const genres = await db.getAllGenres();
-  res.render("genre", {
-    genres: genres,
-  });
-};
-
-const renderGenre = async (req, res) => {
-  const genre = req.params.genre;
-  const games = await db.getGamesByGenre(genre);
-  res.render("genreExpand", {
-    games: games,
-  });
-};
-
-const renderAllDevs = async (req, res) => {
-  const devs = await db.getAllDevelopers();
-  res.render("dev", {
-    devs: devs,
-  });
-};
-
-const renderDev = async (req, res) => {
-  const dev = req.params.dev;
-  const games = await db.getGamesByDev(dev);
-  res.render("devExpand", {
-    games: games,
-  });
-};
-
 module.exports = {
   renderHome,
   renderAllGames,
   renderGameForm,
   createGame,
-  renderAllGenres,
-  renderGenre,
-  renderAllDevs,
-  renderDev,
   renderGame,
 };
