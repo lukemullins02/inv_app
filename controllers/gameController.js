@@ -35,11 +35,14 @@ const createGame = async (req, res) => {
   const id = await db.insertGame(title, description, price, rating);
 
   for (let i = 0; i < genres.length; i++) {
-    await db.insertGameGenres(id, genres[i]);
+    const genre_id = await db.getGenre(genres[i]);
+
+    await db.insertGameGenres(id, genre_id);
   }
 
   for (let i = 0; i < devs.length; i++) {
-    await db.insertGameDevs(id, devs[i]);
+    const dev_id = await db.getDev(devs[i]);
+    await db.insertGameDevs(id, dev_id);
   }
 
   res.redirect("/game");
