@@ -5,6 +5,7 @@ const {
   renderDev,
   renderDevForm,
   createDev,
+  deleteDev,
 } = require("../controllers/devController");
 
 const devRouter = Router();
@@ -14,6 +15,8 @@ devRouter.get("/", renderAllDevs);
 devRouter.get("/form", renderDevForm);
 
 devRouter.post("/form", createDev);
+
+devRouter.get("/:id/delete", deleteDev);
 
 devRouter.get("/:dev", renderDev);
 

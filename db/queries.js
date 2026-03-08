@@ -47,7 +47,7 @@ async function updateGame(id, title, description, price, rating) {
 }
 
 async function getAllGenres() {
-  const { rows } = await pool.query("SELECT genre FROM genre order by genre");
+  const { rows } = await pool.query("SELECT * FROM genre order by genre");
 
   return rows;
 }
@@ -72,9 +72,13 @@ async function insertGenre(genre) {
   await pool.query(`INSERT INTO GENRE (genre) values ($1)`, [genre]);
 }
 
+async function deleteGenre(id) {
+  await pool.query("DELETE FROM GENRE WHERE id = $1", [id]);
+}
+
 async function getAllDevelopers() {
   const { rows } = await pool.query(
-    "SELECT developer FROM developer order by developer",
+    "SELECT * FROM developer order by developer",
   );
   return rows;
 }
@@ -100,6 +104,10 @@ async function insertDev(dev) {
   await pool.query(`INSERT INTO DEVELOPER (developer) values ($1)`, [dev]);
 }
 
+async function deleteDev(id) {
+  await pool.query("DELETE FROM DEVELOPER WHERE id = $1", [id]);
+}
+
 module.exports = {
   getAllGames,
   getGame,
@@ -111,9 +119,11 @@ module.exports = {
   updateGame,
   getGamesByGenre,
   insertGenre,
+  deleteGenre,
   getGenre,
   getAllDevelopers,
   getGamesByDev,
   insertDev,
   getDev,
+  deleteDev,
 };

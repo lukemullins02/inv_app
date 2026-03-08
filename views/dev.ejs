@@ -3,6 +3,7 @@
         <% for (let i = 0; i < devs.length; i++){ %>
             <div>
               <a href="/dev/<%= devs[i].developer %>"><%= devs[i].developer%></a>
+              <a href="/dev/<%= devs[i].id %>/delete" >Delete</a>
             </div>
         <% } %>
     </div>
