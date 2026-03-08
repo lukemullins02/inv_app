@@ -3,6 +3,7 @@
         <% for (let i = 0; i < games.length; i++){ %>
             <div>
               <a href="/game/<%= games[i].id %>"><%= games[i].title%></a>
+                <a href="/game/<%= games[i].id %>/delete" >Delete</a>
             </div>
         <% } %>
     </div>

@@ -72,6 +72,14 @@ const updateGamePost = async (req, res) => {
   res.redirect("/game");
 };
 
+const deleteGame = async (req, res) => {
+  const id = req.params.id;
+
+  await db.deleteGame(id);
+
+  res.redirect("/game");
+};
+
 module.exports = {
   renderHome,
   renderAllGames,
@@ -80,4 +88,5 @@ module.exports = {
   renderGame,
   updateGameGet,
   updateGamePost,
+  deleteGame,
 };

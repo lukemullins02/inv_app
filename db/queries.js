@@ -21,6 +21,10 @@ async function insertGame(title, description, price, rating) {
   return statement.rows[0].id;
 }
 
+async function deleteGame(id) {
+  await pool.query("DELETE FROM GAME WHERE id = $1", [id]);
+}
+
 async function insertGameGenres(game_id, genre_id) {
   await pool.query(
     "INSERT INTO GENRE_GAME (game_id, genre_id) VALUES ($1,$2)",
@@ -100,6 +104,7 @@ module.exports = {
   getAllGames,
   getGame,
   insertGame,
+  deleteGame,
   getAllGenres,
   insertGameGenres,
   insertGameDevs,
