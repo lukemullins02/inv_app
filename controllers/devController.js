@@ -27,10 +27,23 @@ const createDev = async (req, res) => {
   res.redirect("/dev");
 };
 
-const deleteDev = async (req, res) => {
+const renderDeleteDev = async (req, res) => {
   const id = req.params.id;
 
-  await db.deleteDev(id);
+  res.render(`delete/devDelete`, {
+    id: id,
+  });
+};
+
+const deleteDev = async (req, res) => {
+  const { password } = req.body;
+  const id = req.params.id;
+
+  if (password === process.env.ADMIN_PASSWORD) {
+    await db.deleteDev(id);
+  } else {
+    console.log("Nope");
+  }
 
   res.redirect("/dev");
 };
@@ -41,4 +54,5 @@ module.exports = {
   renderDevForm,
   createDev,
   deleteDev,
+  renderDeleteDev,
 };
