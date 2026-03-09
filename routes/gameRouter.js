@@ -9,6 +9,7 @@ const {
   updateGameGet,
   updateGamePost,
   deleteGame,
+  renderDeleteGame,
 } = require("../controllers/gameController");
 
 const gameRouter = Router();
@@ -23,7 +24,9 @@ gameRouter.post("/game/form", createGame);
 
 gameRouter.get("/game/:id", renderGame);
 
-gameRouter.get("/game/:id/delete", deleteGame);
+gameRouter.get("/game/:id/delete", renderDeleteGame);
+
+gameRouter.post("/game/:id/delete", deleteGame);
 
 gameRouter.get("/game/:id/update", updateGameGet);
 

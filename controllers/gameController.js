@@ -115,10 +115,23 @@ const updateGamePost = async (req, res) => {
   res.redirect("/game");
 };
 
-const deleteGame = async (req, res) => {
+const renderDeleteGame = async (req, res) => {
   const id = req.params.id;
 
-  await db.deleteGame(id);
+  res.render(`delete/gameDelete`, {
+    id: id,
+  });
+};
+
+const deleteGame = async (req, res) => {
+  const { password } = req.body;
+  const id = req.params.id;
+
+  if (password === process.env.ADMIN_PASSWORD) {
+    await db.deleteGame(id);
+  } else {
+    console.log("Nope");
+  }
 
   res.redirect("/game");
 };
@@ -132,4 +145,5 @@ module.exports = {
   updateGameGet,
   updateGamePost,
   deleteGame,
+  renderDeleteGame,
 };
