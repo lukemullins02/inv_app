@@ -31,6 +31,30 @@
           value="<%= game.rating %>"
         />
       </div>
+       <div>
+        <label for="genres">Select Genres (Use cmd/ctrl to select multiple) </label>
+        <select name="genres" id="genres" multiple>
+          <% for (let i = 0; i < genres.length; i++) { %>
+            <% if(!sel_genres.includes(genres[i].genre)) { %>
+            <option value="<%= genres[i].genre %>"><%= genres[i].genre %></option>
+          <% } else{ %>
+            <option selected value="<%= genres[i].genre %>"><%= genres[i].genre %></option>
+          <% } %>
+          <% } %>
+        </select>
+      </div>
+      <div>
+        <label for="devs">Select Developers (Use cmd/ctrl to select multiple) </label>
+        <select name="devs" id="devs" multiple>
+          <% for (let i = 0; i < devs.length; i++) { %>
+            <% if(!sel_devs.includes(devs[i].developer)) { %>
+            <option value="<%= devs[i].developer %>"><%= devs[i].developer %></option>
+          <% } else { %>
+            <option selected value="<%= devs[i].developer %>"><%= devs[i].developer %></option>
+          <% } %>
+          <% } %>
+        </select>
+      </div>
 
       <input type="submit" value="Submit" />
     </form>

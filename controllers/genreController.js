@@ -3,8 +3,6 @@ const db = require("../db/queries");
 const renderAllGenres = async (req, res) => {
   const genres = await db.getAllGenres();
 
-  console.log(genres);
-
   res.render("genre", {
     genres: genres,
   });
