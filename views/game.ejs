@@ -1,9 +1,18 @@
-<body>
+  <head>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+<body class="roboto-text">
     <%- include("partials/navbar.ejs") %>
-    <a href="/game/form">Game Form</a>
-    <div>
+    <a class="form-center" href="/game/form">Add Game</a>
+    <div class="game-container">
         <% for (let i = 0; i < games.length; i++){ %>
-            <div>
+            <div class="game-card">
               <a href="/game/<%= games[i].id %>"><%= games[i].title%></a>
               <a href="/game/<%= games[i].id %>/delete" >Delete</a>
               <a href="/game/<%= games[i].id %>/update" >Update</a>

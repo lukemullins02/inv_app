@@ -1,0 +1,244 @@
+/* Css reset can be found here: https://www.joshwcomeau.com/css/custom-css-reset/*/
+
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Project CSS */
+
+.roboto-text {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+body {
+  background-color: #f2f4f8;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  min-height: 45px;
+  margin-bottom: 25px;
+  font-size: 1.2rem;
+  background-color: #dfdfdf;
+  font-weight: 400;
+}
+
+.navbar > ul {
+  display: flex;
+  list-style: none;
+  gap: 1.3rem;
+  width: 100%;
+  padding-right: 40px;
+}
+
+.nav-right {
+  display: flex;
+  margin-left: auto;
+  gap: 25px;
+}
+
+.nav-left > a {
+  color: black;
+  text-decoration: none;
+}
+
+.nav-left > a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.nav-right > li > a {
+  color: black;
+  text-decoration: none;
+}
+
+.nav-right > li > a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.game-container {
+  align-items: start;
+  display: grid;
+  padding-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+  justify-content: center;
+  padding: 20px 50px 20px 50px;
+  gap: 1.5rem;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 320px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 10px;
+  gap: 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+  transform: scale(1.01);
+}
+
+.genre-container {
+  align-items: start;
+  display: grid;
+  padding-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+  justify-content: center;
+  padding: 20px 50px 20px 50px;
+  gap: 1.5rem;
+}
+
+.genre-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 320px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 10px;
+  gap: 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.genre-card:hover {
+  transform: scale(1.01);
+}
+
+.dev-container {
+  align-items: start;
+  display: grid;
+  padding-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+  justify-content: center;
+  padding: 20px 50px 20px 50px;
+  gap: 1.5rem;
+}
+
+.dev-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 320px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 10px;
+  gap: 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.dev-card:hover {
+  transform: scale(1.01);
+}
+
+.form-center {
+  margin: 0 auto;
+  display: inline-block;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #dfdfdf;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  color: black;
+  transition: background-color 0.3s ease;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.form-center:hover {
+  background-color: #b4b1b1;
+}

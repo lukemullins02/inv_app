@@ -1,13 +1,22 @@
-<body>
+  <head>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+<body class="roboto-text">
      <%- include("partials/navbar.ejs") %>
-     <a href="/genre/form">Genre Form</a>
-    <div>
+     <a class="form-center" href="/genre/form">Add Genre</a>
+    <div class="genre-container">
         <% for (let i = 0; i < genres.length; i++){ %>
-            <div>
+            <div class="genre-card">
               <a href="/genre/<%= genres[i].genre %>"><%= genres[i].genre%></a>
               <a href="/genre/<%= genres[i].id %>/delete" >Delete</a>
             </div>
-            </div>
+           
         <% } %>
     </div>
 </body>
