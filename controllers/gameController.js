@@ -1,6 +1,25 @@
 const db = require("../db/queries");
+const { body, validationResult, matchedData } = require("express-validator");
 
 const renderHome = (req, res) => res.render("home");
+
+const titleErr = "must be 176 characters or less.";
+const descErr = "must be 800 characters or less.";
+const priceErr = "must be between $0 and $1000.";
+const ratingErr = "must be between 1 and 10.";
+
+const validateGame = [
+  body("title").isLength({ max: 176 }).withMessage(`Title ${titleErr}`),
+  body("description")
+    .isLength({ max: 800 })
+    .withMessage(`Description ${descErr}`),
+  body("price")
+    .isFloat({ min: 0, max: 1000 })
+    .withMessage(`Price ${priceErr}.`),
+  body("rating").isInt({ min: 1, max: 10 }).withMessage(`Rating ${ratingErr}`),
+  body("genres"),
+  body("devs"),
+];
 
 const renderAllGames = async (req, res) => {
   const games = await db.getAllGames();
@@ -29,24 +48,55 @@ const renderGameForm = async (req, res) => {
   });
 };
 
-const createGame = async (req, res) => {
-  const { title, description, price, rating, genres, devs } = req.body;
+const createGame = [
+  validateGame,
+  async (req, res) => {
+    const errors = validationResult(req);
 
-  const id = await db.insertGame(title, description, price, rating);
+    if (!errors.isEmpty()) {
+      const err_genres = await db.getAllGenres();
+      const err_devs = await db.getAllDevelopers();
+      return res.status(400).render("form/gameForm", {
+        errors: errors.array(),
+        genres: err_genres,
+        devs: err_devs,
+      });
+    }
 
-  for (let i = 0; i < genres.length; i++) {
-    const genre_id = await db.getGenre(genres[i]);
+    const { title, description, price, rating, genres, devs } =
+      matchedData(req);
 
-    await db.insertGameGenres(id, genre_id);
-  }
+    const id = await db.insertGame(title, description, price, rating);
 
-  for (let i = 0; i < devs.length; i++) {
-    const dev_id = await db.getDev(devs[i]);
-    await db.insertGameDevs(id, dev_id);
-  }
+    let genreArr;
+    let devArr;
 
-  res.redirect("/game");
-};
+    if (!Array.isArray(genres)) {
+      genreArr = [genres];
+    } else {
+      genreArr = genres;
+    }
+
+    if (!Array.isArray(devs)) {
+      devArr = [devs];
+    } else {
+      devArr = devs;
+    }
+
+    for (let i = 0; i < genreArr.length; i++) {
+      const genre_id = await db.getGenre(genreArr[i]);
+
+      await db.insertGameGenres(id, genre_id);
+    }
+
+    for (let i = 0; i < devArr.length; i++) {
+      const dev_id = await db.getDev(devArr[i]);
+      await db.insertGameDevs(id, dev_id);
+    }
+
+    res.redirect("/game");
+  },
+];
 
 const updateGameGet = async (req, res) => {
   const id = req.params.id;
@@ -77,43 +127,59 @@ const updateGameGet = async (req, res) => {
   });
 };
 
-const updateGamePost = async (req, res) => {
-  const id = req.params.id;
+const updateGamePost = [
+  validateGame,
+  async (req, res) => {
+    const errors = validationResult(req);
 
-  const { title, description, price, rating, genres, devs } = req.body;
+    if (!errors.isEmpty()) {
+      const err_genres = await db.getAllGenres();
+      const err_devs = await db.getAllDevelopers();
+      return res.status(400).render("form/gameForm", {
+        errors: errors.array(),
+        genres: err_genres,
+        devs: err_devs,
+      });
+    }
 
-  await db.deleteGenreGame(id);
-  await db.deleteDevGame(id);
+    const id = req.params.id;
 
-  let genreArr;
-  let devArr;
+    const { title, description, price, rating, genres, devs } =
+      matchedData(req);
 
-  if (!Array.isArray(genres)) {
-    genreArr = [genres];
-  } else {
-    genreArr = genres;
-  }
+    await db.deleteGenreGame(id);
+    await db.deleteDevGame(id);
 
-  if (!Array.isArray(devs)) {
-    devArr = [devs];
-  } else {
-    devArr = devs;
-  }
+    let genreArr;
+    let devArr;
 
-  for (let i = 0; i < genreArr.length; i++) {
-    const genre_id = await db.getGenre(genreArr[i]);
-    await db.insertGameGenres(id, genre_id);
-  }
+    if (!Array.isArray(genres)) {
+      genreArr = [genres];
+    } else {
+      genreArr = genres;
+    }
 
-  for (let i = 0; i < devArr.length; i++) {
-    const dev_id = await db.getDev(devArr[i]);
-    await db.insertGameDevs(id, dev_id);
-  }
+    if (!Array.isArray(devs)) {
+      devArr = [devs];
+    } else {
+      devArr = devs;
+    }
 
-  await db.updateGame(id, title, description, price, rating);
+    for (let i = 0; i < genreArr.length; i++) {
+      const genre_id = await db.getGenre(genreArr[i]);
+      await db.insertGameGenres(id, genre_id);
+    }
 
-  res.redirect("/game");
-};
+    for (let i = 0; i < devArr.length; i++) {
+      const dev_id = await db.getDev(devArr[i]);
+      await db.insertGameDevs(id, dev_id);
+    }
+
+    await db.updateGame(id, title, description, price, rating);
+
+    res.redirect("/game");
+  },
+];
 
 const renderDeleteGame = async (req, res) => {
   const id = req.params.id;

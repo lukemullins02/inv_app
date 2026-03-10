@@ -3,11 +3,11 @@
     <form method="POST" action="/game/<%= game.id %>/update">
       <div>
         <label for="title">Title </label>
-        <input type="text" name="title" id="title" value="<%= game.title %>" />
+        <input type="text" name="title" id="title" value="<%= game.title %>" required />
       </div>
       <div>
         <label for="description">Description </label>
-        <textarea type="text" name="description" id="description">
+        <textarea type="text" name="description" id="description" required>
 <%= game.description %></textarea
         >
       </div>
@@ -18,17 +18,17 @@
           name="price"
           id="price"
           value="<%= game.price %>"
+          required
         />
       </div>
       <div>
         <label for="rating">Rating </label>
         <input
           type="number"
-          max="10"
-          min="1"
           name="rating"
           id="rating"
           value="<%= game.rating %>"
+          required
         />
       </div>
        <div>
