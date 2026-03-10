@@ -7,6 +7,7 @@ const titleErr = "must be 176 characters or less.";
 const descErr = "must be 800 characters or less.";
 const priceErr = "must be between $0 and $1000.";
 const ratingErr = "must be between 1 and 10.";
+const passwordErr = "don't match. Try again.";
 
 const validateGame = [
   body("title").isLength({ max: 176 }).withMessage(`Title ${titleErr}`),
@@ -19,6 +20,9 @@ const validateGame = [
   body("rating").isInt({ min: 1, max: 10 }).withMessage(`Rating ${ratingErr}`),
   body("genres"),
   body("devs"),
+  body("password")
+    .equals(process.env.ADMIN_PASSWORD)
+    .withMessage(`Passwords ${passwordErr}`),
 ];
 
 const renderAllGames = async (req, res) => {
@@ -131,18 +135,33 @@ const updateGamePost = [
   validateGame,
   async (req, res) => {
     const errors = validationResult(req);
+    const id = req.params.id;
 
     if (!errors.isEmpty()) {
       const err_genres = await db.getAllGenres();
       const err_devs = await db.getAllDevelopers();
-      return res.status(400).render("form/gameForm", {
+      const err_game = await db.getGame(id);
+      const err_sel_genres = await db.getGenresByGame(id);
+
+      const err_sel_devs = await db.getDevsByGame(id);
+
+      for (let i = 0; i < err_sel_genres.length; i++) {
+        err_sel_genres[i] = err_sel_genres[i].genre;
+      }
+
+      for (let i = 0; i < err_sel_devs.length; i++) {
+        err_sel_devs[i] = err_sel_devs[i].developer;
+      }
+
+      return res.status(400).render("update/updateGame", {
         errors: errors.array(),
+        game: err_game,
         genres: err_genres,
         devs: err_devs,
+        sel_genres: err_sel_genres,
+        sel_devs: err_sel_devs,
       });
     }
-
-    const id = req.params.id;
 
     const { title, description, price, rating, genres, devs } =
       matchedData(req);
