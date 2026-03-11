@@ -1,8 +1,19 @@
-<body>
-  <div>
-    <p><%= game.title %></p>
-    <p><%= game.description %></p>
-    <p><%= game.price %></p>
-    <p><%= game.rating %></p>
-  </div>
+<head>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="roboto-text">
+  <main class="game-expand-main">
+    <div class="game-card">
+      <p><%= game.title %></p>
+      <p><%= game.description %></p>
+      <p>Price: <%= game.price %></p>
+      <p>Rating: <%= game.rating %>/10</p>
+    </div>
+  </main>
 </body>

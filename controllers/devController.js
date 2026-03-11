@@ -12,6 +12,7 @@ const renderDev = async (req, res) => {
   const games = await db.getGamesByDev(dev);
   res.render("expand/devExpand", {
     games: games,
+    dev: dev,
   });
 };
 

@@ -1,6 +1,16 @@
-<body>
-  <main>
-    <form method="POST" action="/genre/<%= id %>/delete">
+<head>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body class="roboto-text">
+  <main class="genre-main">
+    <h2>Delete Genre</h2>
+    <form class="genre-form" method="POST" action="/genre/<%= id %>/delete">
       <div>
         <label for="password">Admin Password </label>
         <input type="text" name="password" id="password" />

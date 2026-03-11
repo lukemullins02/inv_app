@@ -13,6 +13,7 @@ const renderGenre = async (req, res) => {
   const games = await db.getGamesByGenre(genre);
   res.render("expand/genreExpand", {
     games: games,
+    genre: genre
   });
 };
 
