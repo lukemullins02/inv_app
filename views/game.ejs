@@ -13,9 +13,14 @@
     <div class="game-container">
         <% for (let i = 0; i < games.length; i++){ %>
             <div class="game-card">
+              <img src="/Super Mario Galaxy.jpg" class="game-img"/>
               <a href="/game/<%= games[i].id %>"><%= games[i].title%></a>
+              <p>$<%= games[i].price %></p>
+              <p>Rating: <%= games[i].rating %>/10</p>
+              <div class="del-upd">
               <a href="/game/<%= games[i].id %>/delete" >Delete</a>
               <a href="/game/<%= games[i].id %>/update" >Update</a>
+              </div>
             </div>
         <% } %>
     </div>

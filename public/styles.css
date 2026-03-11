@@ -141,7 +141,7 @@ body {
   align-items: start;
   display: grid;
   padding-top: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
   justify-content: center;
   padding: 20px 50px 20px 50px;
   gap: 1.5rem;
@@ -156,9 +156,9 @@ body {
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
   margin: 10px;
-  gap: 15px;
+  gap: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  font-size: 1.3rem;
+
   transition: transform 0.3s ease;
 }
 
@@ -354,4 +354,36 @@ select {
 
 h1 {
   text-align: center;
+}
+
+.game-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.del-upd {
+  display: flex;
+  justify-content: space-between;
+}
+
+.del-upd > a {
+  display: inline-block;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #dfdfdf;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  color: black;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.del-upd > a:hover {
+  background-color: #b4b1b1;
 }
