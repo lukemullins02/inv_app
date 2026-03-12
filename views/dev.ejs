@@ -14,8 +14,8 @@
         <% for (let i = 0; i < devs.length; i++){ %>
             <div class="dev-card">
               <img class="game-img" src="devs.png"/>
-              <a href="/dev/<%= devs[i].developer %>"><%= devs[i].developer%></a>
-              <a href="/dev/<%= devs[i].id %>/delete" >Delete</a>
+              <a class="expand-link" href="/dev/<%= devs[i].developer %>"><%= devs[i].developer%></a>
+              <a class="gn-dev-del" href="/dev/<%= devs[i].id %>/delete" >Delete</a>
             </div>
         <% } %>
     </div>

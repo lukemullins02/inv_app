@@ -231,6 +231,10 @@ body {
   transition: transform 0.3s ease;
 }
 
+.expand-link:hover {
+  color: blue;
+}
+
 .genre-card:hover {
   transform: scale(1.01);
 }
@@ -450,5 +454,24 @@ h1 {
 }
 
 .del-upd > a:hover {
+  background-color: #b4b1b1;
+}
+
+.gn-dev-del {
+  display: inline-block;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #dfdfdf;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  color: black;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.gn-dev-del:hover {
   background-color: #b4b1b1;
 }

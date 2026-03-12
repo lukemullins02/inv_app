@@ -53,7 +53,7 @@ const deleteDev = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).render(`delete/genreDelete`, {
+      return res.status(400).render(`delete/devDelete`, {
         errors: errors.array(),
         id: id,
       });
