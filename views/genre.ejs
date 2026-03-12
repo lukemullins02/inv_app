@@ -13,6 +13,7 @@
     <div class="genre-container">
         <% for (let i = 0; i < genres.length; i++){ %>
             <div class="genre-card">
+              <img class="game-img" src="genres.jpg"/>
               <a href="/genre/<%= genres[i].genre %>"><%= genres[i].genre%></a>
               <a href="/genre/<%= genres[i].id %>/delete" >Delete</a>
             </div>

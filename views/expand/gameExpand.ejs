@@ -8,12 +8,21 @@
   />
 </head>
 <body class="roboto-text">
+  <%- include("../partials/navbar.ejs") %>
+
   <main class="game-expand-main">
-    <div class="game-card">
-      <p><%= game.title %></p>
+    <div class="game-expand-toprow">
+      <div class="game-expand-img">
+        <img src="/Super Mario Galaxy.jpg" />
+      </div>
+      <div class="game-expand-info">
+        <p><%= game.title %></p>
+        <p>$<%= game.price %></p>
+        <p>Rating: <%= game.rating %>/10</p>
+      </div>
+    </div>
+    <div class="game-expand-bottomrow">
       <p><%= game.description %></p>
-      <p>Price: <%= game.price %></p>
-      <p>Rating: <%= game.rating %>/10</p>
     </div>
   </main>
 </body>

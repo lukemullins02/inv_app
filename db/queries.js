@@ -61,7 +61,7 @@ async function getGenre(genre) {
 
 async function getGamesByGenre(genre) {
   const { rows } = await pool.query(
-    `SELECT gm.title, gm.description, gm.price, gm.rating from game as gm join genre_game as gn_gm on gm.id = gn_gm.game_id join genre as gn on gn_gm.genre_id = gn.id  where genre=$1`,
+    `SELECT gm.id,gm.title, gm.description, gm.price, gm.rating from game as gm join genre_game as gn_gm on gm.id = gn_gm.game_id join genre as gn on gn_gm.genre_id = gn.id  where genre=$1`,
     [genre],
   );
 
@@ -98,7 +98,7 @@ async function getAllDevelopers() {
 
 async function getGamesByDev(dev) {
   const { rows } = await pool.query(
-    `SELECT gm.title, gm.description, gm.price, gm.rating from game as gm join dev_game as dev_gm on gm.id = dev_gm.game_id join developer as dev on dev_gm.dev_id = dev.id  where developer=$1`,
+    `SELECT gm.id,gm.title, gm.description, gm.price, gm.rating from game as gm join dev_game as dev_gm on gm.id = dev_gm.game_id join developer as dev on dev_gm.dev_id = dev.id  where developer=$1`,
     [dev],
   );
 

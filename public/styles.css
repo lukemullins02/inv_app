@@ -263,10 +263,34 @@ h2 {
 }
 
 .game-expand-main {
+  display: grid;
+  grid-template-rows: 1fr 0.5fr;
+  padding: 20px;
+}
+
+.game-expand-toprow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 40px;
+}
+
+.game-expand-img {
+  place-items: center;
+  margin-right: 10px;
+}
+
+.game-expand-bottomrow {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.game-expand-info {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
-  margin: 0 auto;
+  gap: 25px;
+  font-size: 2rem;
+  font-weight: 300;
+  justify-content: center;
 }
 
 .game-form {

@@ -13,6 +13,7 @@
     <div class="dev-container">
         <% for (let i = 0; i < devs.length; i++){ %>
             <div class="dev-card">
+              <img class="game-img" src="devs.png"/>
               <a href="/dev/<%= devs[i].developer %>"><%= devs[i].developer%></a>
               <a href="/dev/<%= devs[i].id %>/delete" >Delete</a>
             </div>
