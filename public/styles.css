@@ -97,7 +97,7 @@ body {
   display: flex;
   align-items: center;
   min-height: 45px;
-  margin-bottom: 25px;
+
   font-size: 1.2rem;
   background-color: #dfdfdf;
   font-weight: 400;
@@ -135,6 +135,46 @@ body {
 .nav-right > li > a:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.home {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  height: 80vh;
+}
+
+.home-welcome {
+  position: relative;
+  display: flex;
+  text-align: center;
+  background-image: url("/shop.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: rgb(255, 255, 255);
+  align-items: start;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.home-welcome::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.home-welcome > h1 {
+  position: relative;
+  z-index: 1;
+  margin-top: 2rem;
+}
+
+.home-desc {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  padding: 3rem;
 }
 
 .game-container {
@@ -238,6 +278,7 @@ body {
   transition: background-color 0.3s ease;
   font-size: 1.1rem;
   font-weight: 400;
+  margin-top: 25px;
 }
 
 .form-center:hover {
