@@ -9,8 +9,8 @@
   </head>
 <body class="roboto-text">
   <main class="game-main">
-      <%- include('../partials/errors') %>
     <h2>Update Game</h2>
+    <%- include('../partials/errors') %>
     <form class="game-form" method="POST" action="/game/<%= game.id %>/update">
       <div>
         <label for="title">Title </label>
@@ -30,6 +30,7 @@
           id="price"
           value="<%= game.price %>"
           required
+          step="0.01"
         />
       </div>
       <div>

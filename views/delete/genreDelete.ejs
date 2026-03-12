@@ -10,6 +10,7 @@
 <body class="roboto-text">
   <main class="genre-main">
     <h2>Delete Genre</h2>
+    <%- include('../partials/errors') %>
     <form class="genre-form" method="POST" action="/genre/<%= id %>/delete">
       <div>
         <label for="password">Admin Password </label>

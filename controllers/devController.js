@@ -1,4 +1,13 @@
 const db = require("../db/queries");
+const { body, validationResult, matchedData } = require("express-validator");
+
+const passwordErr = "don't match. Try again.";
+
+const validateDelete = [
+  body("password")
+    .equals(`${process.env.ADMIN_PASSWORD}`)
+    .withMessage(`Passwords ${passwordErr}`),
+];
 
 const renderAllDevs = async (req, res) => {
   const devs = await db.getAllDevelopers();
@@ -36,18 +45,25 @@ const renderDeleteDev = async (req, res) => {
   });
 };
 
-const deleteDev = async (req, res) => {
-  const { password } = req.body;
-  const id = req.params.id;
+const deleteDev = [
+  validateDelete,
+  async (req, res) => {
+    const id = req.params.id;
 
-  if (password === process.env.ADMIN_PASSWORD) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render(`delete/genreDelete`, {
+        errors: errors.array(),
+        id: id,
+      });
+    }
+
     await db.deleteDev(id);
-  } else {
-    console.log("Nope");
-  }
 
-  res.redirect("/dev");
-};
+    res.redirect("/dev");
+  },
+];
 
 module.exports = {
   renderAllDevs,

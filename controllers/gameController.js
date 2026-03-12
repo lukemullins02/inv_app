@@ -20,8 +20,27 @@ const validateGame = [
   body("rating").isInt({ min: 1, max: 10 }).withMessage(`Rating ${ratingErr}`),
   body("genres"),
   body("devs"),
+];
+
+const validateUpdate = [
+  body("title").isLength({ max: 176 }).withMessage(`Title ${titleErr}`),
+  body("description")
+    .isLength({ max: 800 })
+    .withMessage(`Description ${descErr}`),
+  body("price")
+    .isFloat({ min: 0, max: 1000 })
+    .withMessage(`Price ${priceErr}.`),
+  body("rating").isInt({ min: 1, max: 10 }).withMessage(`Rating ${ratingErr}`),
+  body("genres"),
+  body("devs"),
   body("password")
-    .equals(process.env.ADMIN_PASSWORD)
+    .equals(`${process.env.ADMIN_PASSWORD}`)
+    .withMessage(`Passwords ${passwordErr}`),
+];
+
+const validateDelete = [
+  body("password")
+    .equals(`${process.env.ADMIN_PASSWORD}`)
     .withMessage(`Passwords ${passwordErr}`),
 ];
 
@@ -132,7 +151,7 @@ const updateGameGet = async (req, res) => {
 };
 
 const updateGamePost = [
-  validateGame,
+  validateUpdate,
   async (req, res) => {
     const errors = validationResult(req);
     const id = req.params.id;
@@ -208,18 +227,25 @@ const renderDeleteGame = async (req, res) => {
   });
 };
 
-const deleteGame = async (req, res) => {
-  const { password } = req.body;
-  const id = req.params.id;
+const deleteGame = [
+  validateDelete,
+  async (req, res) => {
+    const id = req.params.id;
 
-  if (password === process.env.ADMIN_PASSWORD) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render(`delete/gameDelete`, {
+        errors: errors.array(),
+        id: id,
+      });
+    }
+
     await db.deleteGame(id);
-  } else {
-    console.log("Nope");
-  }
 
-  res.redirect("/game");
-};
+    res.redirect("/game");
+  },
+];
 
 module.exports = {
   renderHome,

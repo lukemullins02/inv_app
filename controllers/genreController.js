@@ -1,4 +1,13 @@
 const db = require("../db/queries");
+const { body, validationResult, matchedData } = require("express-validator");
+
+const passwordErr = "don't match. Try again.";
+
+const validateDelete = [
+  body("password")
+    .equals(`${process.env.ADMIN_PASSWORD}`)
+    .withMessage(`Passwords ${passwordErr}`),
+];
 
 const renderAllGenres = async (req, res) => {
   const genres = await db.getAllGenres();
@@ -13,7 +22,7 @@ const renderGenre = async (req, res) => {
   const games = await db.getGamesByGenre(genre);
   res.render("expand/genreExpand", {
     games: games,
-    genre: genre
+    genre: genre,
   });
 };
 
@@ -37,18 +46,25 @@ const renderDeleteGenre = async (req, res) => {
   });
 };
 
-const deleteGenre = async (req, res) => {
-  const { password } = req.body;
-  const id = req.params.id;
+const deleteGenre = [
+  validateDelete,
+  async (req, res) => {
+    const id = req.params.id;
 
-  if (password === process.env.ADMIN_PASSWORD) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render(`delete/genreDelete`, {
+        errors: errors.array(),
+        id: id,
+      });
+    }
+
     await db.deleteGenre(id);
-  } else {
-    console.log("Nope");
-  }
 
-  res.redirect("/genre");
-};
+    res.redirect("/genre");
+  },
+];
 
 module.exports = {
   renderAllGenres,

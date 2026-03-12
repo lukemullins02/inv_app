@@ -5,7 +5,7 @@ const { Client } = require("pg");
 const SQL = `
  CREATE TABLE developer(id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,developer varchar (50) UNIQUE not null);
  CREATE TABLE genre(id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,genre varchar (20) UNIQUE not null);
- CREATE TABLE game(id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,title varchar (176) NOT NULL,description varchar (1000),price DECIMAL(4,2),rating INTEGER);
+ CREATE TABLE game(id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,title varchar (176) NOT NULL,description varchar (1000),price DECIMAL(6,2),rating INTEGER);
  create table genre_game(game_id integer references game(id) on delete cascade,genre_id integer references genre(id) on delete cascade);
  create table dev_game(game_id integer references game(id) on delete cascade,dev_id integer references developer(id) on delete cascade);
 
